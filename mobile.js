@@ -35,7 +35,8 @@
       let linksHTML = '';
       if (desktopLinks.length) {
         desktopLinks.forEach(a => {
-          linksHTML += `<a href="${a.href}">${a.textContent.trim()}</a>`;
+          const hrefAttr = a.getAttribute('href');
+          linksHTML += `<a href="${hrefAttr}">${a.textContent.trim()}</a>`;
         });
       } else {
         // Fallback link set
@@ -68,7 +69,8 @@
       // Highlight active link
       const currentPage = window.location.pathname.split('/').pop() || 'index.html';
       overlay.querySelectorAll('.mnav-links a').forEach(a => {
-        if (a.getAttribute('href') === currentPage || a.getAttribute('href').includes(currentPage)) {
+        const href = a.getAttribute('href');
+        if (href === currentPage || href.includes(currentPage)) {
           a.classList.add('active');
         }
       });
@@ -87,7 +89,9 @@
         document.body.style.overflow = '';
       }
 
-      hamburger.addEventListener('click', function () {
+      hamburger.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         overlay.classList.contains('open') ? closeMenu() : openMenu();
       });
       overlay.querySelector('.mnav-close').addEventListener('click', closeMenu);
