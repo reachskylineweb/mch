@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -250,42 +250,6 @@
         opacity: 0;
         animation: fsu 0.8s 0.75s forwards;
       }
-      #detectBtn {
-        display: inline-block;
-        background: var(--red);
-        color: #fff;
-        padding: 0.9rem 2.2rem;
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        transition:
-          background 0.25s,
-          transform 0.2s,
-          box-shadow 0.25s;
-        opacity: 0;
-        animation: fsu 0.8s 0.9s forwards;
-        font-family: "Inter", sans-serif;
-      }
-      #detectBtn:hover {
-        background: #c41f25;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 28px rgba(228, 39, 46, 0.3);
-      }
-      #detectBtn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-      }
-      #detectBtn svg {
-        width: 16px;
-        height: 16px;
-        fill: currentColor;
-        flex-shrink: 0;
-      }
       @keyframes fsu {
         from {
           opacity: 0;
@@ -294,32 +258,6 @@
         to {
           opacity: 1;
           transform: translateY(0);
-        }
-      }
-      #dloader {
-        display: none;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.78rem;
-        color: rgba(255, 255, 255, 0.75);
-        margin-top: 0.9rem;
-        justify-content: center;
-      }
-      #dloader.show {
-        display: flex;
-      }
-      .sp {
-        width: 16px;
-        height: 16px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-top-color: #fff;
-        border-radius: 50%;
-        animation: spin 0.7s linear infinite;
-        flex-shrink: 0;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
         }
       }
       /* MAP FEATURES ENHANCEMENTS */
@@ -791,18 +729,7 @@
         <p class="hero-sub">
           Serving Authentic South Indian Filter Coffee Across Metro India.
         </p>
-        <button id="detectBtn">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-            />
-          </svg>
-          Detect My Location
-        </button>
-        <div id="dloader">
-          <div class="sp"></div>
-          <span>Detecting your location…</span>
-        </div>
+
       </div>
     </section>
 
@@ -1318,7 +1245,8 @@
 
           groupData.districts.forEach((dist) => {
             const distSec = document.createElement("div");
-            distSec.className = "dist-sec open";
+            // All sections start CLOSED by default
+            distSec.className = "dist-sec";
 
             const distHead = document.createElement("div");
             distHead.className = "dist-head";
@@ -1326,7 +1254,7 @@
 
             const distBody = document.createElement("div");
             distBody.className = "dist-body";
-            distBody.style.display = "grid";
+            distBody.style.display = "none"; // hidden by default
             distBody.style.gridTemplateColumns =
               "repeat(auto-fill, minmax(280px, 1fr))";
             distBody.style.gap = "20px";
@@ -1350,9 +1278,24 @@
               distBody.appendChild(card);
             });
 
+            // True accordion: clicking one closes all others in the same state section
             distHead.addEventListener("click", () => {
-              const isOpen = distSec.classList.toggle("open");
-              distBody.style.display = isOpen ? "grid" : "none";
+              const parentState = distSec.closest(".state-sec");
+              const allInState = parentState.querySelectorAll(".dist-sec");
+              const isCurrentlyOpen = distSec.classList.contains("open");
+
+              // Close all in this state first
+              allInState.forEach((sec) => {
+                sec.classList.remove("open");
+                const body = sec.querySelector(".dist-body");
+                if (body) body.style.display = "none";
+              });
+
+              // Open clicked one only if it was closed
+              if (!isCurrentlyOpen) {
+                distSec.classList.add("open");
+                distBody.style.display = "grid";
+              }
             });
 
             distSec.appendChild(distHead);
@@ -1445,27 +1388,7 @@
         .getElementById("storeSearch")
         .addEventListener("input", applyFilter);
 
-      // ═══ DETECT LOCATION ══════════════════════════════════════
-      document.getElementById("detectBtn").addEventListener("click", () => {
-        if (!navigator.geolocation) return;
-        const ld = document.getElementById("dloader");
-        ld.classList.add("show");
-        navigator.geolocation.getCurrentPosition(
-          (pos) => {
-            ld.classList.remove("show");
-            const { latitude: uLat, longitude: uLng } = pos.coords;
-            // Simple nearest logic (using city centers for now)
-            const centers = {
-              chennai: { lat: 13.0827, lng: 80.2707 },
-              hyderabad: { lat: 17.385, lng: 78.4867 },
-              bangalore: { lat: 12.9716, lng: 77.5946 },
-            };
-            // Manual scroll to first match for demo
-            document.querySelector(".bc").click();
-          },
-          () => ld.classList.remove("show"),
-        );
-      });
+      // detect location removed
 
       // ═══ NAV scrolled state ═══════════════════════════════════
       window.addEventListener("scroll", () =>

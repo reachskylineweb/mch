@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -56,11 +56,10 @@ nav#nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 5%;height:
 /* ── HERO ──────────────────────────────────────────── */
 #hero{position:relative;min-height:540px;padding:120px 5%;background:var(--white);display:flex;align-items:center;overflow:hidden}
 .hero-shapes{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.shape{position:absolute;border-radius:50%;animation:shapeFloat 10s ease-in-out infinite}
-.shape-1{width:420px;height:420px;background:radial-gradient(circle,rgba(228,39,46,.06),transparent 70%);top:-80px;right:-60px;animation-duration:12s}
-.shape-2{width:280px;height:280px;background:radial-gradient(circle,rgba(243,146,10,.07),transparent 70%);bottom:80px;right:15%;animation-duration:9s;animation-delay:2s}
-.shape-3{width:200px;height:200px;background:radial-gradient(circle,rgba(228,39,46,.04),transparent 70%);top:40%;left:5%;animation-duration:14s;animation-delay:4s}
-@keyframes shapeFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-20px) scale(1.04)}}
+.shape{position:absolute;border-radius:50%}
+.shape-1{width:420px;height:420px;background:radial-gradient(circle,rgba(228,39,46,.06),transparent 70%);top:-80px;right:-60px}
+.shape-2{width:280px;height:280px;background:radial-gradient(circle,rgba(243,146,10,.07),transparent 70%);bottom:80px;right:15%}
+.shape-3{width:200px;height:200px;background:radial-gradient(circle,rgba(228,39,46,.04),transparent 70%);top:40%;left:5%}
 .hero-inner{max-width:1200px;margin:0 auto;padding:0 20px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
 .hero-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem}
 .hero-tag::before{content:'';width:24px;height:2px;background:var(--red)}
@@ -87,10 +86,8 @@ nav#nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 5%;height:
 
 /* ── AUTHORITY STRIP ───────────────────────────────── */
 #strip{background:var(--red);padding:60px 5%}
-.strip-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.strip-headline{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;line-height:1;color:#fff}
-.strip-headline span{display:block;font-size:clamp(1rem,2vw,1.3rem);font-weight:400;font-family:'Inter',sans-serif;color:rgba(255,255,255,.7);margin-top:.5rem;letter-spacing:.12em;text-transform:uppercase}
-.strip-points{display:flex;flex-direction:column;gap:1.5rem}
+.strip-inner{max-width:1200px;margin:0 auto;padding:0 20px}
+.strip-points{display:grid;grid-template-columns:1fr 1fr;gap:2rem 4rem}
 .strip-point{display:flex;align-items:flex-start;gap:1rem}
 .sp-icon{width:40px;height:40px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem}
 .sp-text b{font-size:.88rem;font-weight:700;color:#fff;display:block;margin-bottom:.2rem}
@@ -225,7 +222,7 @@ nav#nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 5%;height:
 /* ── FOOTER ────────────────────────────────────────── */
 footer{background:var(--white);border-top:1px solid var(--border);padding:80px 5% 40px}
 .footer-inner{max-width:1280px;margin:0 auto}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
 .footer-brand p{font-size:.8rem;color:var(--gray);line-height:1.75;margin:1rem 0 1.2rem}
 .footer-socials{display:flex;gap:.6rem}
 .fsoc{width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s;box-shadow:0 4px 12px rgba(228,39,46,.3);flex-shrink:0}
@@ -261,150 +258,9 @@ h1,h2,h3{text-align:center}
 }
 
 /* ── CUP AND SAUCER POURING ANIMATION ──────────────── */
-.coffee-animation-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 240px;
-  position: relative;
-  width: 100%;
-}
-.coffee-cup-system {
-  position: relative;
-  width: 140px;
-  height: 180px;
-}
-.saucer-body {
-  position: absolute;
-  bottom: 15px;
-  left: 10px;
-  width: 120px;
-  height: 16px;
-  background: var(--white);
-  border-radius: 50%;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-  z-index: 2;
-}
-.cup-body {
-  position: absolute;
-  bottom: 24px;
-  left: 30px;
-  width: 80px;
-  height: 68px;
-  background: var(--white);
-  border-radius: 0 0 40px 40px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 3;
-  overflow: hidden;
-}
-.cup-handle {
-  position: absolute;
-  bottom: 40px;
-  left: 95px;
-  width: 24px;
-  height: 32px;
-  border: 7px solid var(--white);
-  border-radius: 50%;
-  transform: rotate(15deg);
-  z-index: 1;
-}
-.cup-liquid {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 85%;
-  background: #5c3a21;
-  border-top: 2px solid #e4a853;
-  animation: liquidFill 6s ease-in-out infinite alternate;
-}
-/* Coffee Maker style */
-.coffee-maker {
-  position: absolute;
-  top: -30px;
-  left: 40px;
-  width: 60px;
-  height: 80px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.maker-top {
-  width: 50px;
-  height: 32px;
-  background: linear-gradient(to right, #f2c061, #dca134, #a36f1c);
-  border-radius: 4px 4px 0 0;
-  box-shadow: inset 0 2px 2px rgba(255,255,255,0.4);
-}
-.maker-rim {
-  width: 56px;
-  height: 6px;
-  background: linear-gradient(to right, #ffd37a, #e9af43, #be852b);
-  border-radius: 2px;
-}
-.maker-bottom {
-  width: 48px;
-  height: 32px;
-  background: linear-gradient(to right, #f2c061, #dca134, #a36f1c);
-  border-radius: 0 0 4px 4px;
-}
-.maker-spout {
-  width: 8px;
-  height: 8px;
-  background: linear-gradient(to right, #dca134, #a36f1c);
-  border-radius: 0 0 2px 2px;
-}
-.coffee-stream {
-  position: absolute;
-  top: 52px;
-  left: 66px;
-  width: 8px;
-  height: 108px;
-  background: linear-gradient(to bottom, #5c3a21 0%, #3e2716 100%);
-  border-radius: 4px;
-  z-index: 4;
-  opacity: 0.95;
-  box-shadow: 0 0 4px rgba(92,58,33,0.5);
-  animation: streamPour 2s linear infinite;
-  background-size: 100% 40px;
-}
-.steam-container {
-  position: absolute;
-  top: 15px;
-  left: 45px;
-  width: 50px;
-  height: 50px;
-  z-index: 5;
-}
-.steam {
-  position: absolute;
-  bottom: 0;
-  width: 4px;
-  height: 25px;
-  background: rgba(255,255,255,0.4);
-  border-radius: 50%;
-  animation: steamRise 3s infinite linear;
-  filter: blur(2px);
-}
-.steam.s1 { left: 10px; animation-delay: 0s; }
-.steam.s2 { left: 25px; animation-delay: 1s; height: 35px; }
-.steam.s3 { left: 40px; animation-delay: 2.2s; }
 
-@keyframes streamPour {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 80px; }
-}
-@keyframes steamRise {
-  0% { transform: translateY(0) scaleX(1); opacity: 0; }
-  15% { opacity: 0.6; }
-  50% { transform: translateY(-20px) scaleX(1.5); opacity: 0.3; }
-  100% { transform: translateY(-40px) scaleX(2); opacity: 0; }
-}
-@keyframes liquidFill {
-  0% { height: 80%; }
-  100% { height: 90%; }
-}
+
+/* Cleaned up old format overrides */
 
 /* Cleaned up old format overrides */
 
@@ -473,30 +329,6 @@ h1,h2,h3{text-align:center}
 <!-- ══ AUTHORITY STRIP ═════════════════════════════════════════ -->
 <section id="strip">
   <div class="strip-inner">
-    <div class="fade-up">
-      <div class="coffee-animation-wrap">
-        <div class="coffee-cup-system">
-          <div class="steam-container">
-            <div class="steam s1"></div>
-            <div class="steam s2"></div>
-            <div class="steam s3"></div>
-          </div>
-          <!-- Brass Filter Coffee Maker -->
-          <div class="coffee-maker">
-            <div class="maker-top"></div>
-            <div class="maker-rim"></div>
-            <div class="maker-bottom"></div>
-            <div class="maker-spout"></div>
-          </div>
-          <div class="coffee-stream"></div>
-          <div class="cup-handle"></div>
-          <div class="cup-body">
-            <div class="cup-liquid"></div>
-          </div>
-          <div class="saucer-body"></div>
-        </div>
-      </div>
-    </div>
     <div class="strip-points">
       <div class="strip-point fade-up d1">
         <div class="sp-icon">📋</div>
@@ -885,10 +717,7 @@ h1,h2,h3{text-align:center}
         <li><a href="about.html">About Us</a></li>
         <li><a href="menu.html">Our Menu</a></li>
         </ul></div>
-      <div class="footer-col"><h5>Stores</h5><ul>
-        <li><a href="stores.html">Find a Store</a></li>
-        
-      </ul></div>
+
       <div class="footer-col"><h5>Franchise</h5><ul>
         <li><a href="franchise.html">Why Partner With Us</a></li>
         <li><a href="https://madrascoffeehouse.com/wp-content/uploads/2025/10/MCH-PRESENTATION-new-final-.pdf" target="_blank">Brochure</a></li>
