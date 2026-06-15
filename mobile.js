@@ -25,7 +25,7 @@
       backdrop.className = 'mobile-nav-backdrop';
       document.body.appendChild(backdrop);
 
-      const overlay = document.createElement('nav');
+      const overlay = document.createElement('div');
       overlay.className = 'mobile-nav-overlay';
       overlay.setAttribute('aria-label', 'Mobile navigation');
       overlay.setAttribute('role', 'navigation');
