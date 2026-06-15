@@ -206,7 +206,7 @@ video {
     overflow-y: auto !important;
     padding: 0 !important;
   }
-  .mobile-nav-overlay.open { right: 0; }
+  .mobile-nav-overlay.open { right: 0 !important; }
   .mnav-header {
     padding: 1.4rem 1.6rem 1rem;
     border-bottom: 1px solid #f0f0f0;
