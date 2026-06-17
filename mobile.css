@@ -415,9 +415,23 @@ video {
   .hero-title { font-size: clamp(2rem, 8vw, 3rem) !important; }
 
   /* Category sticky nav */
-  #cat-nav { top: 64px !important; overflow-x: auto !important; }
-  .cat-nav-inner { justify-content: flex-start !important; padding: 0 4% !important; gap: 0 !important; }
-  .cat-link { padding: 0.9rem 0.8rem !important; font-size: 0.62rem !important; white-space: nowrap !important; }
+  #cat-nav { top: 64px !important; overflow: visible !important; }
+  .cat-nav-inner {
+    justify-content: flex-start !important;
+    padding: 0 4% !important;
+    gap: 0.25rem !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  .cat-nav-inner::-webkit-scrollbar { display: none !important; }
+  .cat-link {
+    padding: 0.9rem 0.8rem !important;
+    font-size: 0.75rem !important; /* Enforced 12px readability standard */
+    white-space: nowrap !important;
+  }
 
   /* Section headers */
   .section-header {

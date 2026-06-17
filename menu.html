@@ -14,7 +14,7 @@ html{scroll-behavior:smooth;font-size:16px}
 body{background:var(--white);color:var(--black);font-family:'Inter',sans-serif;overflow-x:hidden}
 
 /* ── NAVBAR ────────────────────────────────────────── */
-nav#nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .35s,box-shadow .35s,height .35s;background:var(--white);box-shadow:0 1px 0 var(--border)}
+nav#nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .35s,box-shadow .35s,height .35s;background:transparent}
 #nav.scrolled{background:var(--white);box-shadow:0 1px 0 var(--border);height:64px}
 #nav.nav-solid{background:var(--white);box-shadow:0 1px 0 var(--border)}
 .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
@@ -190,6 +190,12 @@ nav#nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 5%;height:
 }
 .menu-deco-circle img.rotate-90-ccw {
   transform: rotate(-90deg);
+}
+.menu-deco-circle img.rotate-portrait-cw {
+  transform: rotate(90deg) scale(1.35);
+}
+.menu-deco-circle img.rotate-portrait-ccw {
+  transform: rotate(-90deg) scale(1.35);
 }
 .menu-deco-circle:hover {
   transform: scale(1.08) rotate(3deg);
@@ -372,6 +378,162 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:80px 5
   #menu-hero{height:80vh}
   .cat-link{padding:.7rem .8rem;font-size:.68rem}
 }
+
+
+
+/* ── SEARCH & FILTERS ──────────────────────────────── */
+#search-filter-section {
+  padding: 24px 5%;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.search-filter-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.search-box-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+  min-width: 280px;
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--gray);
+  pointer-events: none;
+}
+#menuSearch {
+  width: 100%;
+  padding: 12px 40px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  font-size: 0.88rem;
+  color: var(--black);
+  outline: none;
+  transition: all 0.25s ease;
+  background: var(--light);
+}
+#menuSearch:focus {
+  border-color: var(--brand-accent, var(--orange));
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(243, 146, 10, 0.15);
+}
+#clearSearchBtn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  color: var(--gray);
+  cursor: pointer;
+  line-height: 1;
+}
+#clearSearchBtn:hover {
+  color: var(--red);
+}
+.filter-group {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filter-group::-webkit-scrollbar {
+  display: none;
+}
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+.filter-btn:hover {
+  border-color: var(--brand-accent, var(--orange));
+  color: var(--brand-accent, var(--orange));
+}
+.filter-btn.active {
+  background: var(--brand-accent, var(--orange));
+  border-color: var(--brand-accent, var(--orange));
+  color: var(--white);
+}
+.filter-btn.active .dot-veg { border-color: var(--white); background: var(--white); }
+.filter-btn.active .dot-nonveg::before { background: var(--white); }
+.filter-btn.active .dot-egg { border-color: var(--white); background: var(--white); }
+
+/* ── DIETARY DOTS & INDICATORS ─────────────────────── */
+.dot-veg {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #16a34a;
+  padding: 1px;
+  border-radius: 2px;
+  background: #16a34a;
+  background-clip: content-box;
+}
+.dot-nonveg {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 9px solid #dc2626;
+  position: relative;
+  margin: 1px;
+}
+.dot-egg {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ca8a04;
+  padding: 1px;
+  border-radius: 2px;
+  background: #ca8a04;
+  background-clip: content-box;
+}
+.diet-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+.diet-indicator.veg { color: #16a34a; }
+.diet-indicator.non-veg { color: #dc2626; }
+.diet-indicator.egg { color: #ca8a04; }
+
+.mc-header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 0.2rem;
+}
 </style>
   <link rel="stylesheet" href="mobile.css">
 </head>
@@ -389,6 +551,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:80px 5
     <li><a href="about.html">About</a></li>
     <li><a href="franchise.html">Franchise</a></li>
     <li><a href="stores.html">Our Stores</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -414,542 +577,32 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:80px 5
   </div>
 </section>
 
+
+
+<!-- ══ SEARCH & FILTERS ══════════════════════════════════════ -->
+<section id="search-filter-section">
+  <div class="search-filter-container">
+    <div class="search-box-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="menuSearch" placeholder="Search for a dish, beverage, or dessert..." aria-label="Search menu items"/>
+      <button id="clearSearchBtn" aria-label="Clear search" style="display:none">&times;</button>
+    </div>
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="all">All Items</button>
+      <button class="filter-btn" data-filter="veg"><span class="dot-veg"></span> Veg Only</button>
+      <button class="filter-btn" data-filter="egg"><span class="dot-egg"></span> Egg Only</button>
+      <button class="filter-btn" data-filter="non-veg"><span class="dot-nonveg"></span> Non-Veg</button>
+    </div>
+  </div>
+</section>
+
 <!-- ══ STICKY CATEGORY NAV ═══════════════════════════════════ -->
 <nav id="cat-nav" aria-label="Menu categories">
-  <div class="cat-nav-inner">
-    <button class="cat-link active" data-target="filter-coffee">☕ FILTER COFFEE</button>
-    <button class="cat-link" data-target="beverages">🥤 BEVERAGES</button>
-    <button class="cat-link" data-target="tiffin">🍽️ TIFFIN</button>
-    <button class="cat-link" data-target="snacks">🥜 SNACKS</button>
-    <button class="cat-link" data-target="meals">🍛 MEALS</button>
-    <button class="cat-link" data-target="combos">🎁 COMBOS</button>
-    <button class="cat-link" data-target="sweets">🍮 SWEETS</button>
-    <button class="cat-link" data-target="specials">⭐ SPECIALS</button>
-  </div>
+  <div class="cat-nav-inner" id="catNavInner"></div>
 </nav>
 
-<!-- ══ FEATURED STRIP ════════════════════════════════════════ -->
-<section id="featured-strip">
-  <div class="feat-inner fade-up">
-    <p class="feat-eyebrow">The Heart of Our Menu</p>
-    <h2 class="feat-title">Authentic Degree Filter Coffee</h2>
-    <div class="feat-underline"></div>
-    <p class="feat-desc">Brewed the traditional way — coarsely ground beans filtered slowly through our proprietary brass filter, poured from height in the classic davara-tumbler ritual. Every cup carries 15 years of heritage in a single sip.</p>
-  </div>
-</section>
-
-<!-- ══ FILTER COFFEE ══════════════════════════════════════════ -->
-<section class="menu-section" id="filter-coffee">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">Signature Category</div>
-      <h2 class="sec-title">Filter Coffee</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517201/38880019-836d-4998-bcaf-61fe8dc823cb_jaqoei.jpg" alt="Filter Coffee Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517776/59cc327c-e083-4c0b-88ad-17ea656862ac_ztqltf.jpg" alt="Black Coffee Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517788/61ffdfdb-a758-41c6-883a-838546a7394d_ztwsny.jpg" alt="Double Chocolate Coffee Deco" /></div>
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Degree Filter Coffee</div>
-        <div class="mc-desc">Classic strong decoction with full-cream milk, davara-tumbler served</div>
-        <span class="mc-tag">Signature</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Madras Filter Coffee</div>
-        <div class="mc-desc">Medium-strong blend, extra frothy pour, the original Madras style</div>
-        <span class="mc-tag">Bestseller</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Strong Filter Coffee</div>
-        <div class="mc-desc">High decoction ratio, robust South Indian blend for a bold kick</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Light Filter Coffee</div>
-        <div class="mc-desc">Mild decoction, smooth and gentle — perfect for a relaxed morning</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Cardamom Filter Coffee</div>
-        <div class="mc-desc">Traditional brew infused with freshly ground cardamom for warm spice</div>
-        <span class="mc-tag">Heritage</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d3">
-      
-      <div class="mc-body">
-        <div class="mc-name">Jaggery Coffee</div>
-        <div class="mc-desc">Filter decoction sweetened with pure cane jaggery — nostalgic & earthy</div>
-        <span class="mc-tag">Traditional</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ BEVERAGES ══════════════════════════════════════════════ -->
-<section class="menu-section" id="beverages">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">Cold & Hot Drinks</div>
-      <h2 class="sec-title">Beverages</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517089/cd7f90f2-f189-49c0-9b01-d81ba23fc21e_z9yetf.jpg" alt="Three Juice Bottles Deco" class="rotate-90-ccw" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517745/a2e70d8b-2ad4-4a71-936e-12a5d1c41fc0_kkfnr2.jpg" alt="Buttermilk Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517797/a0ec4ac9-57f4-49d3-8678-427258efe917_vkbeur.jpg" alt="Water Bottle Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517789/af15fe26-a637-494f-9f3a-cf28d0347f65_ksmham.jpg" alt="Chocolate Coffee Deco" /></div>
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Cold Coffee</div>
-        <div class="mc-desc">Chilled decoction blended with chilled milk and a hint of vanilla</div>
-        <span class="mc-tag">Cold</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Badam Milk</div>
-        <div class="mc-desc">Rich warm milk infused with almond paste, saffron, and cardamom</div>
-        <span class="mc-tag">Hot</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Masala Tea</div>
-        <div class="mc-desc">Ginger, tulsi & spice-blended chai brewed the traditional way</div>
-        <span class="mc-tag">Hot</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Ginger Tea</div>
-        <div class="mc-desc">Strong ginger-forward tea, warming and rejuvenating</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Mango Lassi</div>
-        <div class="mc-desc">Thick Alphonso mango pulp blended with fresh curd and cardamom</div>
-        <span class="mc-tag">Cold</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Lemon Soda</div>
-        <div class="mc-desc">Fresh lime, black salt, and chilled soda — crisp and citrusy</div>
-        <span class="mc-tag">Cold</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TIFFIN ═════════════════════════════════════════════════ -->
-<section class="menu-section" id="tiffin">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">South Indian Classics</div>
-      <h2 class="sec-title">Tiffin</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517212/506400e3-9a3b-4092-8bc4-5952ebdf0a4b_gszhwx.jpg" alt="Dosai Deco" /></div>
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Plain Dosa</div>
-        <div class="mc-desc">Crispy thin rice-lentil crepe served with sambar and coconut chutney</div>
-        <span class="mc-tag">Classic</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Masala Dosa</div>
-        <div class="mc-desc">Golden dosa filled with spiced potato masala, served with chutneys</div>
-        <span class="mc-tag">Bestseller</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Onion Rava Dosa</div>
-        <div class="mc-desc">Crispy semolina crepe with onion, green chilli, and cumin</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Idli (2 pcs)</div>
-        <div class="mc-desc">Soft steamed rice cakes served with sambar, tomato & coconut chutney</div>
-        <span class="mc-tag">Classic</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Pongal</div>
-        <div class="mc-desc">Comforting rice-lentil porridge with ghee, pepper, cumin, and cashew</div>
-        <span class="mc-tag">Heritage</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Upma</div>
-        <div class="mc-desc">Tempered semolina with mustard, curry leaf, and vegetables</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SNACKS ═════════════════════════════════════════════════ -->
-<section class="menu-section" id="snacks">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">Perfect with Coffee</div>
-      <h2 class="sec-title">Snacks</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517190/8b310c56-0e2e-437e-88ae-e2268e43c8f4_hk9ekf.jpg" alt="Sundal Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517751/5258fc56-1664-4bc8-aad5-002fcd7a91d4_z7d520.jpg" alt="Methu Vadai Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517182/4f9d3d44-f422-4afd-af2e-c0d96aabed9e_avi0bv.jpg" alt="French Fries Deco" class="rotate-90-ccw" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517757/2bcb4536-1085-497c-84ea-46f53ce1ac54_jl1u0x.jpg" alt="Paruppu Vadai Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517770/9b311e92-74ba-4e37-9c31-f52b399af39a_o27fix.jpg" alt="Milakai Bajji Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517764/c4308c48-5cdf-41d7-b476-d144753999cb_abb1xe.jpg" alt="Biscuits Deco" /></div>
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Vada (2 pcs)</div>
-        <div class="mc-desc">Crispy lentil doughnuts served with coconut chutney and sambar</div>
-        <span class="mc-tag">Classic</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Samosa (2 pcs)</div>
-        <div class="mc-desc">Flaky pastry filled with spiced potato and green peas, fried golden</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Bajji Platter</div>
-        <div class="mc-desc">Assorted fritters — onion, chilli, and banana — with green chutney</div>
-        <span class="mc-tag">Shareable</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Bread Bajji</div>
-        <div class="mc-desc">Bread slices dipped in spiced gram flour batter, deep fried crispy</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Murukku</div>
-        <div class="mc-desc">Traditional South Indian spiral rice crackers — crunchy and savoury</div>
-        <span class="mc-tag">Traditional</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Mixture</div>
-        <div class="mc-desc">House blend of savoury fried snacks with peanuts, sev, and poha</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ MEALS ══════════════════════════════════════════════════ -->
-<section class="menu-section" id="meals">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">Full & Filling</div>
-      <h2 class="sec-title">Meals</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <!-- No decoration circles for Meals -->
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Mini Meals</div>
-        <div class="mc-desc">Rice, sambar, rasam, 2 veg curries, papad, curd — balanced & wholesome</div>
-        <span class="mc-tag">Value</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Full Meals</div>
-        <div class="mc-desc">Unlimited rice, sambar, rasam, 3 curries, kootu, pickle, papad, curd</div>
-        <span class="mc-tag">Unlimited</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Curd Rice</div>
-        <div class="mc-desc">Tempered curd rice with mustard, curry leaf, ginger, and pomegranate</div>
-        <span class="mc-tag">Comfort</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Sambar Rice</div>
-        <div class="mc-desc">Slow-cooked sambar ladled over soft-boiled rice with a dollop of ghee</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Lemon Rice</div>
-        <div class="mc-desc">Turmeric-tossed rice with lemon, peanuts, mustard and curry leaves</div>
-        <span class="mc-tag">Light</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Tamarind Rice</div>
-        <div class="mc-desc">Puliyodarai — tangy tamarind rice with sesame and groundnut tempering</div>
-        <span class="mc-tag">Heritage</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ COMBOS ═════════════════════════════════════════════════ -->
-<section class="menu-section" id="combos">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">Best Value</div>
-      <h2 class="sec-title">Combos</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517212/506400e3-9a3b-4092-8bc4-5952ebdf0a4b_gszhwx.jpg" alt="Dosai Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517201/38880019-836d-4998-bcaf-61fe8dc823cb_jaqoei.jpg" alt="Filter Coffee Deco" /></div>
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Coffee + Idli Combo</div>
-        <div class="mc-desc">Degree filter coffee with 2 soft idlis, sambar and 2 chutneys</div>
-        <span class="mc-tag">Morning Deal</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Coffee + Dosa Combo</div>
-        <div class="mc-desc">Filter coffee paired with a crispy masala dosa and two chutneys</div>
-        <span class="mc-tag">Bestseller</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Coffee + Vada Combo</div>
-        <div class="mc-desc">Hot filter coffee with 2 medhu vadas and coconut chutney</div>
-        <span class="mc-tag">Snack Pack</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Tiffin + Coffee Combo</div>
-        <div class="mc-desc">Choice of any tiffin item + degree filter coffee at combo price</div>
-        <span class="mc-tag">Flexible</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Full Breakfast Combo</div>
-        <div class="mc-desc">Idli, vada, pongal + 2 coffees — the complete South Indian breakfast</div>
-        <span class="mc-tag">Value Pack</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Evening Snack Combo</div>
-        <div class="mc-desc">Masala tea or coffee with bajji platter — perfect 5 PM ritual</div>
-        <span class="mc-tag">Evening</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SWEETS ═════════════════════════════════════════════════ -->
-<section class="menu-section" id="sweets">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">Traditional Indulgences</div>
-      <h2 class="sec-title">Sweets</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517066/6df1c28e-36dc-4008-a4b7-5ade1897f8f9_ghqjwy.jpg" alt="Donut Deco" class="rotate-90-ccw" /></div>
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Kesari</div>
-        <div class="mc-desc">Semolina halwa with saffron, ghee, cashew and golden raisins</div>
-        <span class="mc-tag">Classic</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Mysore Pak</div>
-        <div class="mc-desc">Melt-in-mouth gram flour sweet with generous amounts of pure ghee</div>
-        <span class="mc-tag">Heritage</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Halwa</div>
-        <div class="mc-desc">Wheat or carrot halwa slow-cooked with ghee, dry fruits, and cardamom</div>
-      </div>
-    </div>
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Payasam</div>
-        <div class="mc-desc">Creamy rice or vermicelli kheer with condensed milk, saffron, cashew</div>
-        <span class="mc-tag">Festival</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Kozhukattai</div>
-        <div class="mc-desc">Steamed rice flour dumplings filled with coconut-jaggery stuffing</div>
-        <span class="mc-tag">Traditional</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Ladoo</div>
-        <div class="mc-desc">Soft besan ladoos rolled with cardamom, ghee, and powdered sugar</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SPECIALS ═══════════════════════════════════════════════ -->
-<section class="menu-section" id="specials">
-  <div class="section-header fade-up">
-    <div class="section-header-left">
-      <div class="sec-eyebrow">Chef's Picks</div>
-      <h2 class="sec-title">Specials</h2>
-      <div class="sec-divider"></div>
-    </div>
-    <div class="section-header-right">
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517212/506400e3-9a3b-4092-8bc4-5952ebdf0a4b_gszhwx.jpg" alt="Dosai Deco" /></div>
-      <div class="menu-deco-circle"><img src="https://res.cloudinary.com/dr7jaclns/image/upload/v1781517726/640c98c0-a4e7-4350-a3bd-d1b732a32450_j6zbsz.jpg" alt="Kuzhi Paniyaram Deco" /></div>
-    </div>
-  </div>
-  <div class="menu-grid">
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Ghee Roast Dosa</div>
-        <div class="mc-desc">Extra crispy dosa lavishly roasted with pure clarified butter</div>
-        <span class="mc-tag">Chef's Special</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Set Dosa (3 pcs)</div>
-        <div class="mc-desc">Soft, spongy mini dosas served with saagu and coconut chutney</div>
-        <span class="mc-tag">Karnataka Style</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Filter Coffee Ice Cream</div>
-        <div class="mc-desc">House-made vanilla bean ice cream with a cold filter decoction drizzle</div>
-        <span class="mc-tag">New</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up">
-      
-      <div class="mc-body">
-        <div class="mc-name">Kongu Pongal</div>
-        <div class="mc-desc">Regional Kongu Nadu style pongal with extra ghee and pepper seasoning</div>
-        <span class="mc-tag">Regional</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d1">
-      
-      <div class="mc-body">
-        <div class="mc-name">Kuzhi Paniyaram</div>
-        <div class="mc-desc">Spiced fermented rice-lentil balls cooked in cast iron, crispy outside</div>
-        <span class="mc-tag">Heritage</span>
-      </div>
-    </div>
-    <div class="menu-card fade-up d2">
-      
-      <div class="mc-body">
-        <div class="mc-name">Adai Dosa</div>
-        <div class="mc-desc">Thick mixed lentil pancake, protein-rich, served with aviyal and butter</div>
-        <span class="mc-tag">Nutritious</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ══ DYNAMIC MENU CONTAINER ════════════════════════════════ -->
+<div id="dynamic-menu-content"></div>
 
 <!-- ══ FOOTER ════════════════════════════════════════════════ -->
 <footer>
@@ -975,9 +628,11 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:80px 5
       <div class="footer-col"><h5>Brand</h5><ul>
         <li><a href="about.html">About Us</a></li>
         <li><a href="menu.html">Our Menu</a></li>
-        </ul></div>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul></div>
       <div class="footer-col"><h5>Stores</h5><ul>
         <li><a href="stores.html">Find a Store</a></li>
+        <li><a href="index.html#store-format">Store Format</a></li>
       </ul></div>
       <div class="footer-col"><h5>Franchise</h5><ul>
         <li><a href="franchise.html">Why Partner With Us</a></li>
@@ -993,101 +648,13 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:80px 5
       </ul></div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Madras Coffee House Pvt. Ltd. All rights reserved.</p>
+      <p>© 2024 Madras Coffee House Pvt. Ltd. All rights reserved.</p>
       <div style="display:flex;align-items:center;gap:.5rem"><div class="footer-red-dot"></div><p>Chennai, Tamil Nadu, India</p></div>
     </div>
   </div>
 </footer>
 
-<script>
-// ── GLOBAL VARIABLES ────────────────────────────────
-const NAV = document.getElementById('nav');
-const catNav = document.getElementById('cat-nav');
-const catLinks = document.querySelectorAll('.cat-link');
-const menuSections = document.querySelectorAll('.menu-section');
-let isManualScrolling = false;
-
-// ── CATEGORY NAV LOGIC (Run First) ──────────────────
-const getScrollOffset = () => {
-  const navH = (NAV && NAV.classList.contains('scrolled')) ? 64 : 72;
-  const catH = catNav ? catNav.offsetHeight : 0;
-  return navH + catH - 2;
-};
-
-// Click handling for categories
-catLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = link.dataset.target;
-    const targetSec = document.getElementById(targetId);
-    if (targetSec) {
-      isManualScrolling = true;
-      // Immediate active update for responsiveness
-      catLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-
-      const targetTop = targetSec.getBoundingClientRect().top + window.scrollY - getScrollOffset();
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-
-      // Re-enable observer highlight after scroll ends
-      setTimeout(() => { isManualScrolling = false; }, 1000);
-    }
-  });
-});
-
-// Scroll Spy for highlights
-if ('IntersectionObserver' in window && menuSections.length) {
-  const spyObs = new IntersectionObserver((entries) => {
-    if (isManualScrolling) return;
-    
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        catLinks.forEach(link => {
-          if (link.dataset.target === id) {
-            link.classList.add('active');
-            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-          } else {
-            link.classList.remove('active');
-          }
-        });
-      }
-    });
-  }, {
-    rootMargin: '-15% 0px -75% 0px', // Detects section in upper 10% of viewport
-    threshold: 0
-  });
-
-  menuSections.forEach(s => spyObs.observe(s));
-}
-
-// ── NAVBAR & HEADER ─────────────────────────────────
-if (NAV) {
-  window.addEventListener('scroll', () => {
-    const isScrolled = window.scrollY > 40;
-    NAV.classList.toggle('scrolled', isScrolled);
-    NAV.classList.toggle('nav-solid', !isScrolled);
-    if (catNav) {
-      catNav.style.top = isScrolled ? '64px' : '72px';
-    }
-  }, { passive: true });
-}
-
-
-// ── REVEAL SYSTEM ───────────────────────────────────
-if ('IntersectionObserver' in window) {
-  const revObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        revObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-up, .fade-in, .reveal').forEach(el => revObs.observe(el));
-}
-</script>
+<script src="menu-data.js"></script>
 
 <!-- ══ MENU MODAL OVERLAY ══ -->
 <div id="menu-modal" class="menu-modal-overlay">
@@ -1107,7 +674,15 @@ if ('IntersectionObserver' in window) {
 </div>
 
 <script>
-// ── MENU ITEM MODAL POPUP ──
+// ── GLOBAL VARIABLES ────────────────────────────────
+const NAV = document.getElementById('nav');
+const catNav = document.getElementById('cat-nav');
+const catNavInner = document.getElementById('catNavInner');
+const dynamicContent = document.getElementById('dynamic-menu-content');
+const menuSearch = document.getElementById('menuSearch');
+const clearSearchBtn = document.getElementById('clearSearchBtn');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
 const menuModal = document.getElementById('menu-modal');
 const modalTag = document.getElementById('modalTag');
 const modalTitle = document.getElementById('modalTitle');
@@ -1115,9 +690,14 @@ const modalDesc = document.getElementById('modalDesc');
 const modalStory = document.getElementById('modalStory');
 const closeModalBtn = document.getElementById('closeModalBtn');
 
+let activeBrandName = "MCH"; // Default to MCH
+let activeFilter = "all";
+let searchQuery = "";
+let isManualScrolling = false;
+
 const itemStories = {
   "Degree Filter Coffee": "Our signature blend, brewed using pure A-grade Arabica and Robusta beans from the hills of Chikmagalur. Mixed with rich, piping hot full-cream milk poured from height to create a frothy crown, and served in a classic brass davara and tumbler.",
-  "Madras Filter Coffee": "A classic medium-strong blend brewed using the traditional drip method. Perfectly balanced, frothy, and full-bodied â€” it is the original taste of Madras that our customers have loved for over 15 years.",
+  "Madras Filter Coffee": "A classic medium-strong blend brewed using the traditional drip method. Perfectly balanced, frothy, and full-bodied — it is the original taste of Madras that our customers have loved for over 15 years.",
   "Strong Filter Coffee": "For those who prefer a bold, robust kick to start their day. This blend features a higher ratio of premium coffee decoction to milk, bringing out deep chocolatey and earthy notes.",
   "Light Filter Coffee": "A smooth, gentle, and aromatic brew with a lower decoction ratio. Ideal for a relaxed afternoon sip or for those who enjoy a milder coffee flavor.",
   "Cardamom Filter Coffee": "Our traditional filter coffee infused with the warm, sweet spice of freshly ground green cardamom. An aromatic and soothing twist on the classic filter coffee.",
@@ -1136,48 +716,322 @@ const itemStories = {
   "Kuzhi Paniyaram": "Spiced fermented rice-lentil batter dumplings, cooked in a traditional cast-iron paniyarakal mould. Crispy golden on the outside and wonderfully soft and fluffy inside, served with hot sambar and fresh coconut chutney."
 };
 
-document.querySelectorAll('.menu-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const name = card.querySelector('.mc-name')?.textContent || '';
-    const desc = card.querySelector('.mc-desc')?.textContent || '';
-    const tag = card.querySelector('.mc-tag')?.textContent || '';
-    
-    modalTitle.textContent = name;
-    modalDesc.textContent = desc;
-    if (tag) {
-      modalTag.textContent = tag;
-      modalTag.style.display = 'inline-block';
-    } else {
-      modalTag.textContent = '';
-      modalTag.style.display = 'none';
-    }
-    
-    const story = itemStories[name] || "Prepared fresh at our outlets daily, using only premium, traditional ingredients. Standardized brewing and cooking processes guarantee the same rich, authentic taste every single time.";
-    modalStory.textContent = story;
-    
-    menuModal.classList.add('open');
-  });
+const storyKeyMap = {
+  "Filter Coffee": "Degree Filter Coffee",
+  "Special Tea": "Masala Tea"
+};
+
+// ── INITIALIZATION ──────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  selectBrand(activeBrandName);
+  setupSearchAndFilters();
+  setupModalEvents();
 });
+
+function selectBrand(brandName) {
+  activeBrandName = brandName;
+  
+  // Set theme accent color dynamically
+  const brand = MENU_DATA[brandName];
+  document.documentElement.style.setProperty('--brand-accent', brand.theme.accent);
+  
+  // Reset search and filters
+  menuSearch.value = "";
+  clearSearchBtn.style.display = 'none';
+  searchQuery = "";
+  activeFilter = "all";
+  filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === 'all'));
+  
+  // Render categories and items
+  renderCategoryNav();
+  renderMenuItems();
+}
+
+// ── CATEGORY NAV ────────────────────────────────────
+function renderCategoryNav() {
+  const brand = MENU_DATA[activeBrandName];
+  const categories = Object.keys(brand.menu).filter(cat => {
+    const c = cat.toLowerCase();
+    return c !== 'extra charge' && c !== 'nan' && c !== 'null' && c !== 'undefined';
+  });
+  
+  catNavInner.innerHTML = categories.map((cat, index) => {
+    const catId = `cat-${cat.replace(/[^a-zA-Z0-9]/g, '-')}`;
+    return `
+      <button class="cat-link ${index === 0 ? 'active' : ''}" data-target="${catId}">
+        ${cat.toUpperCase()}
+      </button>
+    `;
+  }).join('');
+  
+  setupCategoryNavClicks();
+}
+
+const getScrollOffset = () => {
+  const navH = (NAV && NAV.classList.contains('scrolled')) ? 64 : 72;
+  const catH = catNav ? catNav.offsetHeight : 0;
+  return navH + catH - 2;
+};
+
+function setupCategoryNavClicks() {
+  const catLinks = document.querySelectorAll('.cat-link');
+  catLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.dataset.target;
+      const targetSec = document.getElementById(targetId);
+      if (targetSec) {
+        isManualScrolling = true;
+        catLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+        const targetTop = targetSec.getBoundingClientRect().top + window.scrollY - getScrollOffset();
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+        setTimeout(() => { isManualScrolling = false; }, 1000);
+      }
+    });
+  });
+}
+
+// ── RENDER MENU ITEMS ───────────────────────────────
+function renderMenuItems() {
+  const brand = MENU_DATA[activeBrandName];
+  let html = "";
+  
+
+  
+  let matchCount = 0;
+  
+  Object.keys(brand.menu)
+    .filter(cat => {
+      const c = cat.toLowerCase();
+      return c !== 'extra charge' && c !== 'nan' && c !== 'null' && c !== 'undefined';
+    })
+    .forEach((catName, catIndex) => {
+      const category = brand.menu[catName];
+      const catId = `cat-${catName.replace(/[^a-zA-Z0-9]/g, '-')}`;
+      
+      // Apply filters
+      const filteredItems = category.items.filter(item => {
+        const matchesFilter = (activeFilter === "all") || 
+                              (activeFilter === "veg" && item.type === "veg") ||
+                              (activeFilter === "egg" && item.type === "egg") ||
+                              (activeFilter === "non-veg" && item.type === "non-veg");
+                              
+        const matchesSearch = searchQuery === "" || 
+                              item.name.toLowerCase().includes(searchQuery) || 
+                              item.desc.toLowerCase().includes(searchQuery);
+                              
+        return matchesFilter && matchesSearch;
+      });
+      
+      if (filteredItems.length === 0) return;
+      
+      matchCount += filteredItems.length;
+      
+      // Category Deco Images (slice to at most 2 to maintain premium aesthetic)
+      const decoImages = category.images || [];
+      let decoHTML = "";
+      decoImages.slice(0, 1).forEach(imgUrl => {
+        let rotateClass = "";
+        if (imgUrl.includes("997A")) {
+          const needsCCW = ["2635", "2628", "2632", "2629", "8308", "8327", "8303", "8299", "8290", "2709"];
+          const isCCW = needsCCW.some(id => imgUrl.includes(id));
+          rotateClass = isCCW ? "rotate-portrait-ccw" : "rotate-portrait-cw";
+        }
+        decoHTML += `
+          <div class="menu-deco-circle">
+            <img src="${imgUrl}" alt="${catName} Deco" class="${rotateClass}" />
+          </div>
+        `;
+      });
+      
+      html += `
+        <section class="menu-section" id="${catId}">
+          <div class="section-header fade-up in">
+            <div class="section-header-left">
+              <div class="sec-eyebrow" style="color: var(--brand-accent)">Category ${catIndex + 1}</div>
+              <h2 class="sec-title">${catName}</h2>
+              <div class="sec-divider" style="background: var(--brand-accent)"></div>
+            </div>
+            <div class="section-header-right">
+              ${decoHTML}
+            </div>
+          </div>
+          <div class="menu-grid">
+          ${filteredItems.map(item => {
+            const tagHTML = item.tag ? `<span class="mc-tag" style="color: var(--brand-accent); border-color: var(--brand-accent);">${item.tag}</span>` : '';
+            const dietLabel = item.type === "veg" ? "Veg" : item.type === "egg" ? "Egg" : "Non-Veg";
+            const dietDot = item.type === "veg" ? '<span class="dot-veg"></span>' : item.type === "egg" ? '<span class="dot-egg"></span>' : '<span class="dot-nonveg"></span>';
+            
+            // Safe escape for quotes in parameters
+            const safeName = item.name.replace(/'/g, "\\'");
+            const safeDesc = item.desc.replace(/'/g, "\\'");
+            const safeTag = (item.tag || "").replace(/'/g, "\\'");
+            
+            return `
+              <div class="menu-card fade-up in" 
+                   style="border-top-color: var(--brand-accent);"
+                   onclick="openItemModal('${safeName}', '${item.type}', '${safeDesc}', '${safeTag}')">
+                <div class="mc-body">
+                  <div class="mc-header-wrap">
+                    <div class="mc-name">${item.name}</div>
+                    ${dietDot}
+                  </div>
+                  <div class="diet-indicator ${item.type}">
+                    ${dietLabel}
+                  </div>
+                  <div class="mc-desc">${item.desc}</div>
+                  ${tagHTML}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </section>
+    `;
+  });
+  
+  if (matchCount === 0) {
+    html = `
+      <section class="menu-section" style="text-align: center; padding: 80px 5%;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem;">No items found</h3>
+        <p style="color: var(--gray); font-size: 0.9rem;">We couldn't find any dishes matching "${searchQuery}" in ${activeBrandName}.</p>
+      </section>
+    `;
+  }
+  
+  dynamicContent.innerHTML = html;
+  setupScrollSpy();
+}
+
+// ── SEARCH & FILTERS LOGIC ──────────────────────────
+function setupSearchAndFilters() {
+  menuSearch.addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase().trim();
+    clearSearchBtn.style.display = searchQuery.length > 0 ? 'block' : 'none';
+    renderMenuItems();
+  });
+  
+  clearSearchBtn.addEventListener('click', () => {
+    menuSearch.value = "";
+    searchQuery = "";
+    clearSearchBtn.style.display = 'none';
+    renderMenuItems();
+    menuSearch.focus();
+  });
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      renderMenuItems();
+    });
+  });
+}
+
+// ── SCROLL SPY ──────────────────────────────────────
+let activeSpyObserver = null;
+function setupScrollSpy() {
+  const catLinks = document.querySelectorAll('.cat-link');
+  const sections = document.querySelectorAll('#dynamic-menu-content .menu-section[id]');
+  
+  if (activeSpyObserver) {
+    activeSpyObserver.disconnect();
+  }
+  
+  if ('IntersectionObserver' in window && sections.length) {
+    activeSpyObserver = new IntersectionObserver((entries) => {
+      if (isManualScrolling) return;
+      
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          catLinks.forEach(link => {
+            if (link.dataset.target === id) {
+              link.classList.add('active');
+              link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, {
+      rootMargin: '-15% 0px -75% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(s => activeSpyObserver.observe(s));
+  }
+}
+
+// ── NAVBAR STICKY EFFECT ────────────────────────────
+if (NAV) {
+  window.addEventListener('scroll', () => {
+    const isScrolled = window.scrollY > 40;
+    NAV.classList.toggle('scrolled', isScrolled);
+    NAV.classList.toggle('nav-solid', !isScrolled);
+    if (catNav) {
+      catNav.style.top = isScrolled ? '64px' : '72px';
+    }
+  }, { passive: true });
+}
+
+// ── ITEM DETAIL MODAL ───────────────────────────────
+function getItemStory(name, type, desc, tag) {
+  const lookupKey = storyKeyMap[name] || name;
+  if (itemStories[lookupKey]) {
+    return itemStories[lookupKey];
+  }
+  
+  const dietText = type === "veg" ? "wholesome vegetarian choice" : type === "egg" ? "contains fresh eggs" : "savory non-vegetarian selection";
+  const tagText = tag ? `It is highly celebrated as one of our signature ${tag} items.` : "";
+  
+  return `This delicious ${name} is prepared fresh at our outlets daily, using only premium, traditional ingredients. Standardized culinary processes guarantee the same rich, authentic taste every single time. It is a ${dietText} crafted with care to delight your palate. ${tagText} ${desc ? 'Specifically, it features ' + desc.toLowerCase() + '.' : ''}`;
+}
+
+function openItemModal(name, type, desc, tag) {
+  modalTitle.textContent = name;
+  modalDesc.textContent = desc;
+  
+  if (tag) {
+    modalTag.textContent = tag;
+    modalTag.style.display = 'inline-block';
+  } else {
+    modalTag.textContent = '';
+    modalTag.style.display = 'none';
+  }
+  
+  modalStory.textContent = getItemStory(name, type, desc, tag);
+  menuModal.classList.add('open');
+}
 
 function closeModal() {
   menuModal.classList.remove('open');
 }
 
-if (closeModalBtn) {
-  closeModalBtn.addEventListener('click', closeModal);
+function setupModalEvents() {
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
+  
+  menuModal.addEventListener('click', (e) => {
+    if (e.target === menuModal) {
+      closeModal();
+    }
+  });
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuModal.classList.contains('open')) {
+      closeModal();
+    }
+  });
 }
-
-menuModal.addEventListener('click', (e) => {
-  if (e.target === menuModal) {
-    closeModal();
-  }
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && menuModal.classList.contains('open')) {
-    closeModal();
-  }
-});
 </script>
 
 
